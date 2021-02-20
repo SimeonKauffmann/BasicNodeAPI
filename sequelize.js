@@ -14,7 +14,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   }
 });
 
-const User = UserModel(sequelize, Sequelize)
+const Users = UserModel(sequelize, Sequelize)
 
 
 
@@ -31,5 +31,5 @@ async function run() {
 
 
 module.exports = {
-  User, run, sequelize
+  Users, run, sequelize
 }

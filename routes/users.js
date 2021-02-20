@@ -1,14 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const Users = require('../models/users')
-const { sequelize } = require('../sequelize');
+const { sequelize, Users } = require('../sequelize');
 
 //Get all
 router.get('/', async (req, res) => {
   try {
-    sequelize.query("SELECT * FROM users").then(users => {
-      res.send(users)
-    })
+    Users.findAll().then(users => res.json(users))
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
@@ -18,9 +15,8 @@ router.get('/', async (req, res) => {
 //Get One
 router.get('/:id', (req, res) => {
   try {
-    sequelize.query("SELECT * FROM users").then(users => {
-      res.send(users)
-    })
+
+
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
