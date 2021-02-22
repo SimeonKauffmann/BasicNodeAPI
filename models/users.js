@@ -17,6 +17,7 @@ module.exports = (sequelize, type) => {
     },
     events: {
       type: type.STRING
-    }
+    },
+
   })
 }

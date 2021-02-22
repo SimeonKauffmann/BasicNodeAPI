@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { sequelize, Users } = require('../sequelize');
+const { Users } = require('../sequelize');
 
-//Get all
+//Get all users
 router.get('/', async (req, res) => {
   try {
     Users.findAll().then(users => res.json(users))
@@ -15,8 +15,9 @@ router.get('/', async (req, res) => {
 //Get One
 router.get('/:id', (req, res) => {
   try {
-
-
+    Users.findAll({
+      where: { userId: req.params.id }
+    }).then(users => res.json(users))
   } catch (err) {
     res.status(500).json({ message: err.message })
   }
@@ -34,7 +35,15 @@ router.put('/:id', (req, res) => {
 
 //Delete
 router.delete('/:id', (req, res) => {
-
+  try {
+    Users.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 })
 
 module.exports = router
